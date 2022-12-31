@@ -1,0 +1,169 @@
+﻿@model IEnumerable<Employee.Models.Staff>
+
+@{
+    ViewData["Title"] = "StaffList";
+    int intSno = 0;
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+{
+
+    <h1>StaffList</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+
+    <div class="col-4" p-0 justify-content-end>
+        <form asp-controller="Staff" asp-action="StaffList">
+            <span class="btn-group">
+                <input class="form-control" type="text" name="SearchText" placeholder="Search Key" />
+                <input class="p-1 ml-2 btn btn-sm btn-info " type="submit" value="Search" />
+            </span>
+        </form>
+    </div>
+
+    <br />
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Sno
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Position)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                intSno = intSno + 1;
+                <tr>
+                    <td>
+                        @intSno
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id">Edit</a> |
+
+                            <a asp-action="Remove" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    }
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+
+    <h1>StaffList</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+
+    <div class="col-4" p-0 justify-content-end>
+        <form asp-controller="Staff" asp-action="StaffList">
+            <span class="btn-group">
+                <input class="form-control" type="text" name="SearchText" placeholder="Search Key" />
+                <input class="p-1 ml-2 btn btn-sm btn-info " type="submit" value="Search" />
+            </span>
+        </form>
+    </div>
+
+    <br />
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Sno
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Position)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                intSno = intSno + 1;
+                <tr>
+                    <td>
+                        @intSno
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id">Edit</a> |
+
+                            <a asp-action="Remove" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    }
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

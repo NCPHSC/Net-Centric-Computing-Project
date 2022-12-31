@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Employee.Models.Notice>
+
+@{
+    ViewData["Title"] = "NoticeList";
+    int intSno = 0;
+}
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <h1>NoticeList</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Sno
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                intSno = intSno + 1;
+                <tr>
+                    <td>
+                        @intSno
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id">Edit</a> |
+
+                            <a asp-action="Remove" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    }
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+{
+    <h1>NoticeList</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Sno
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                intSno = intSno + 1;
+                <tr>
+                    <td>
+                        @intSno
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id">Edit</a> |
+
+                            <a asp-action="Remove" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    }
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
